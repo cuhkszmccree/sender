@@ -22,8 +22,6 @@ spring:
 
 
 logging:
-  config:
-    sender\src\main\resources\logback-spring.xml
   file:
     path: /log
     name: sender.log
