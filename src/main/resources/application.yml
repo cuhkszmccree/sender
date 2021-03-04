@@ -1,0 +1,42 @@
+server:
+  port: 1002
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.0.99:8888/eureka
+    instance:
+      prefer-ip-address: true
+      ip-address: 192.168.0.99
+      instance-id: ${eureka.instance.ip-address}:${server.port}
+
+spring:
+  rabbitmq:
+    username: guest
+    password: guest
+    publisher-returns: true
+    publisher-confirm-type: correlated
+    addresses: 192.168.0.99:5672, 192.168.0.99:5673
+  application:
+    name: eureka-sender
+
+
+logging:
+  config:
+    sender\src\main\resources\logback-spring.xml
+  file:
+    path: /log
+    name: sender.log
+  level:
+    com:
+      example:
+        DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
