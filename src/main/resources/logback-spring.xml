@@ -6,7 +6,7 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
 -->
 <configuration scan="false" scanPeriod="60 seconds" debug="false">
     <!-- 定义日志的根目录   建议写绝对路径   如果不写默认在项目运行的根路径( D盘,C盘这种)-->
-    <property name="LOG_HOME" value="/opt/runtime/sender" />
+    <property name="LOG_HOME" value="D:/app/sender/log"/>
     <!-- 定义日志文件名称 -->
     <property name="appName" value="testxml"></property>
     <!-- ch.qos.logback.core.ConsoleAppender 表示控制台输出 -->
@@ -70,7 +70,7 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
 
     <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
         <!--可以访问的logstash日志收集端口-->
-        <destination>192.168.0.99:4560</destination>
+        <destination>127.0.0.1:4560</destination>
         <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder"/>
     </appender>
 
@@ -84,10 +84,9 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
 		表示当前logger的appender-ref和rootLogger的appender-ref都有效
     -->
     <!-- hibernate logger -->
-    <logger name="com.example.sender" level="debug" ></logger>
+    <logger name="com.example.sender" level="debug"></logger>
     <!-- Spring framework logger -->
     <logger name="org.springframework" level="debug" additivity="false"></logger>
-
 
 
     <!--
@@ -95,8 +94,8 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
     要么是定义的logger，要么是root，判断的关键在于找到这个logger，然后判断这个logger的appender和level。
     -->
     <root level="info">
-        <appender-ref ref="stdout" />
-        <appender-ref ref="appLogAppender" />
-        <appender-ref ref="LOGSTASH" />
+        <appender-ref ref="stdout"/>
+        <appender-ref ref="appLogAppender"/>
+        <appender-ref ref="LOGSTASH"/>
     </root>
 </configuration>
